@@ -25,13 +25,13 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [ The game is suppose to create a random number and compare it to numbers from the user. ] Describe the game's purpose.
+- [ The "Go HIGHER!" and "Go LOWER!" messages were in the wrong place, and the game could not be restarted. ] Detail which bugs you found.
+- [ I swapped the "Go HIGHER!" and "Go LOWER!" messages and changed the code inside of "if new_game:". ] Explain what fixes you applied.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [ ] [Insert a screenshot of your fixed, winning game here] 
 
 ## 🚀 Stretch Features
 
