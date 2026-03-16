@@ -1,6 +1,8 @@
 import random
 import streamlit as st
 
+from logic_utils import check_guess
+
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
@@ -29,24 +31,6 @@ def parse_guess(raw: str):
     return True, value, None
 
 
-def check_guess(guess, secret):
-    if guess == secret:
-        return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
-        else:
-            return "Too Low", "📉 Go LOWER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
-
-
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
@@ -64,7 +48,7 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
 
     return current_score
 
-st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
+st.set_page_config(page_title="Glitchy G", page_icon="🎮")
 
 st.title("🎮 Game Glitch Investigator")
 st.caption("An AI-generated guessing game. Something is off.")
@@ -131,9 +115,13 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
-if new_game:
+if new_game: # Made changes to the code inside this if statement using Copilot Agent mode
     st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
+    low, high = get_range_for_difficulty(difficulty)  # Use dynamic range
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.status = "playing"  # Reset status
+    st.session_state.history = []  # Optional: Clear history
+    # st.session_state.score = 0  # Optional: Reset score if desired
     st.success("New game started.")
     st.rerun()
 

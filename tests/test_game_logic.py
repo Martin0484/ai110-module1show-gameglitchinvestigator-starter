@@ -14,3 +14,10 @@ def test_guess_too_low():
     # If secret is 50 and guess is 40, hint should be "Too Low"
     result = check_guess(40, 50)
     assert result == "Too Low"
+
+def test_try_block_logic():
+    # Test the logic under the "try:" block (int guess and int secret)
+    # Ensures numerical comparison and correct hints
+    assert check_guess(60, 50) == ("Too High", "📉 Go LOWER!")
+    assert check_guess(40, 50) == ("Too Low", "📈 Go HIGHER!")
+    assert check_guess(50, 50) == ("Win", "🎉 Correct!")
